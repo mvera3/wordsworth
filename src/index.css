@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch controls: no 300ms tap delay, no double-tap-zoom on interactive
+   elements (the whole app is a touch game, so taps should fire instantly). */
+button,
+a,
+label,
+[role='button'],
+[role='tab'] {
+  touch-action: manipulation;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #edeffa;
+  background: #0b0e1f;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Native-game feel on mobile: no rubber-band scroll, no text selection,
+     no long-press callout. Inputs re-enable selection below. */
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@layer base {
+  /* The app's deep-indigo gradient backdrop with a subtle purple glow. */
+  .app-backdrop {
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(91, 108, 255, 0.18) 0%, rgba(11, 14, 31, 0) 55%),
+      radial-gradient(90% 60% at 90% 10%, rgba(138, 124, 255, 0.12) 0%, rgba(11, 14, 31, 0) 50%),
+      linear-gradient(180deg, #0b0e1f 0%, #070912 100%);
+  }
+}
+
+@layer utilities {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Solid panel — NO backdrop-filter. backdrop-filter:blur() produces faint
+     edge "bleed"/ghosting artifacts on Chromium, so we use opaque panels. */
+  .glass {
+    background: linear-gradient(180deg, #161d39 0%, #131a35 100%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* Smooth momentum scrolling on iOS, and keep an inner scroll from chaining
+       out to parents / triggering browser swipe-nav. */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Visible keyboard focus rings for every interactive element. */
+:focus-visible {
+  outline: 2px solid #8a7cff;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

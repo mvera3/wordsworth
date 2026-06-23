@@ -1,0 +1,21 @@
+{
+  "name": "Wordsworth — A life in words",
+  "short_name": "Wordsworth",
+  "description": "A text-based life simulation game by Arcanoire Studio.",
+  "id": "/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0E1F",
+  "theme_color": "#0B0E1F",
+  "categories": ["games", "lifestyle", "entertainment"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
